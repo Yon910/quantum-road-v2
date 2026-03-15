@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Quantum Road</title>
+
+<style>
+
+body{
+font-family:-apple-system;
+background:#f2f4ff;
+padding:20px;
+}
+
+h1{
+color:#1a237e;
+}
+
+.card{
+background:white;
+padding:15px;
+margin:15px 0;
+border-radius:12px;
+box-shadow:0 3px 6px rgba(0,0,0,0.1);
+}
+
+button{
+padding:10px;
+border:none;
+border-radius:8px;
+background:#3949ab;
+color:white;
+margin:5px;
+}
+
+select{
+padding:8px;
+border-radius:6px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<h1>Quantum Road</h1>
+
+
+<div class="card">
+
+<h2>今日の勉強</h2>
+
+<label><input type="checkbox"> 線形代数 30分</label><br>
+<label><input type="checkbox"> 微分方程式 20分</label><br>
+<label><input type="checkbox"> 電磁気 2問</label><br>
+<label><input type="checkbox"> 量子力学 基礎</label>
+
+</div>
+
+
+<div class="card">
+
+<h2>電車モード（60分）</h2>
+
+20分 数学<br>
+20分 物理<br>
+20分 量子
+
+</div>
+
+
+<div class="card">
+
+<h2>院試トレーニング問題</h2>
+
+<p>Q. 固有値とは何か説明せよ。</p>
+
+<button onclick="showAnswer()">解説を見る</button>
+
+<p id="answer" style="display:none;">
+
+行列Aに対して  
+Ax = λx  
+
+を満たすとき  
+
+λを固有値  
+xを固有ベクトルという。
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>勉強タイマー</h2>
+
+<select id="subject">
+
+<option>数学</option>
+<option>物理</option>
+<option>量子</option>
+
+</select>
+
+<br><br>
+
+<button onclick="startStudy()">開始</button>
+
+<button onclick="stopStudy()">終了</button>
+
+<p id="timer"></p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>勉強ログ</h2>
+
+<ul id="log"></ul>
+
+</div>
+
+
+
+<script>
+
+function showAnswer(){
+
+document.getElementById("answer").style.display="block";
+
+}
+
+
+let startTime;
+
+
+function startStudy(){
+
+startTime = new Date();
+
+document.getElementById("timer").innerText="計測中...";
+
+}
+
+
+function stopStudy(){
+
+let endTime = new Date();
+
+let minutes = Math.round((endTime-startTime)/60000);
+
+let subject = document.getElementById("subject").value;
+
+let log = document.getElementById("log");
+
+let item = document.createElement("li");
+
+item.textContent = subject + " " + minutes + "分";
+
+log.appendChild(item);
+
+document.getElementById("timer").innerText="";
+
+}
+
+</script>
+
+
+
+</body>
+
+</html>
